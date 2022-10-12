@@ -1,0 +1,48 @@
+#!/usr/bin/make -f
+
+PACKAGE=$(shell dh_listpackages)
+TMP     =$(CURDIR)/debian/$(PACKAGE)
+
+DEBIAN_TARGETS := clean binary binary-arch binary-indep build build-arch build-indep
+
+include /usr/share/dpkg/architecture.mk
+PERLVER := $(shell perl -MConfig -e 'print $$Config{version}')
+ARCHLIB := $(shell perl -I/usr/lib/$(DEB_HOST_MULTIARCH)/perl/cross-config-$(PERLVER) -MConfig -e 'print $$Config{vendorarch}')
+
+_DETECTION_CMD := perl -MAlien::wxWidgets -e '$$key = Alien::wxWidgets->key; $$key =~ s/_/-/g; print "$$key";'
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+$(DEBIAN_TARGETS):
+	dh $@
+
+# xvfb-run defaults to 8-bit colour depth, which causes some tests to fail.
+override_dh_auto_test:
+	xvfb-run -s '-screen 0 640x480x16' -a dh_auto_test --max-parallel=1
+
+override_dh_auto_install:
+	dh_auto_install
+
+	# fix permissions
+	find $(TMP)/$(ARCHLIB)/Wx -type f -perm /755 -print0 | xargs -r0 chmod -v 664
+
+	# remove bogus man page
+	rm -vf "$(TMP)/usr/share/man/man3/Wx::build::MakeMaker::Win32_MSVC.3pm"
+
+override_dh_installexamples:
+	dh_installexamples
+	chmod 0644 $(TMP)/usr/share/doc/$(PACKAGE)/examples/README.txt
+	find $(TMP)/usr/share/doc/$(PACKAGE)/examples -name '*.pl' -exec chmod 0755 {} \;
+
+get_perl_wx_version:
+	: $(eval PERL_WX_VERSION := $(shell $(_DETECTION_CMD)))
+	@echo PERL_WX_VERSION detected as $(PERL_WX_VERSION)
+
+override_dh_gencontrol: get_perl_wx_version
+	dh_gencontrol -- -V'wxperl:Depends=wxperl-$(PERL_WX_VERSION)'
+
+.PHONY: $(DEBIAN_TARGETS) get_perl_wx_version build-indep build-arch
+
+build-indep:
+
+build-arch: build

@@ -1,0 +1,580 @@
+libwx-perl (1:0.9932-6) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Bump debhelper from old 10 to 12.
+  * Set debhelper-compat version in Build-Depends.
+  * Remove obsolete fields Contact, Name from debian/upstream/metadata
+    (already present in machine-readable debian/copyright).
+  * Add missing debian/rules targets build-indep, build-arch.
+
+  [ gregor herrmann ]
+  * debian/control: update Build-Depends for cross builds.
+  * debian/watch: use uscan version 4.
+  * Update 'DEB_BUILD_MAINT_OPTIONS = hardening=+bindnow' to '=+all'.
+
+  [ Debian Janitor ]
+  * Apply multi-arch hints.
+    + libwx-perl: Add Multi-Arch: same.
+  * Remove constraints unnecessary since buster
+    * Build-Depends: Drop versioned constraint on libalien-wxwidgets-perl.
+    * libwx-perl: Drop versioned constraint on libalien-wxwidgets-perl
+      in Depends.
+    * libwx-perl: Drop versioned constraint on libwx-glcanvas-perl and
+      libwx-scintilla-perl in Breaks.
+
+  [ gregor herrmann ]
+  * debian/rules: make usage of $Config{vendorarch}
+    cross-build-compatible.
+  * Declare compliance with Debian Policy 4.6.0.
+  * Set Rules-Requires-Root: no.
+  * Bump debhelper-compat to 13.
+  * Annotate test-only build dependencies with <!nocheck>.
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 06 Nov 2021 01:47:36 +0100
+
+libwx-perl (1:0.9932-5) unstable; urgency=medium
+
+  * Replace reproducible_output.patch with 5 patches from openSUSE.
+    Thanks to Stefan Brüns for the bug report with the pointer.
+    (Closes: #901544)
+  * Declare compliance with Debian Policy 4.1.4.
+  * Bump debhelper compatibility level to 10.
+  * Remove '--parallel' from default target in debian/rules as it's the
+    default now for debhelper.
+  * Fix typo in description in fix-fake-pod.patch.
+
+ -- gregor herrmann <gregoa@debian.org>  Wed, 27 Jun 2018 20:51:40 +0200
+
+libwx-perl (1:0.9932-4) unstable; urgency=medium
+
+  * Team upload.
+  * Fix autopkgtest failures with xvfb configuration (Closes: #895189)
+  * Break older (GTK2) versions of libwx-scintilla-perl and
+    libwx-glcanvas-perl. (Closes: #895134)
+
+ -- Niko Tyni <ntyni@debian.org>  Fri, 13 Apr 2018 19:46:18 +0300
+
+libwx-perl (1:0.9932-3) unstable; urgency=medium
+
+  [ Alex Muntada ]
+  * Remove inactive pkg-perl members from Uploaders.
+
+  [ Damyan Ivanov ]
+  * declare conformance with Policy 4.1.3 (no changes needed)
+
+  [ Salvatore Bonaccorso ]
+  * Update Vcs-* headers for switch to salsa.debian.org
+
+  [ Olly Betts ]
+  * Update version on libalien-wxwidgets-perl dependency and build-dependency
+    to ensure GTK3 flavour of wxWidgets is used in both cases.
+  * Tell xvfb to use a 16-bit colour display for running tests - the default
+    8-bit colour causes some tests to fail.
+
+ -- Olly Betts <olly@survex.com>  Wed, 04 Apr 2018 10:41:11 +1200
+
+libwx-perl (1:0.9932-2) unstable; urgency=medium
+
+  * Team upload.
+  * Try harder to make the package build reproducibly, by sorting EXPORT_OK
+    in Wx_Exp.pm.
+
+ -- intrigeri <intrigeri@debian.org>  Sun, 06 Aug 2017 22:15:25 +0000
+
+libwx-perl (1:0.9932-1) unstable; urgency=medium
+
+  * New upstream version 0.9932.
+  * Refresh reproducible_output.patch (offset).
+  * Drop encoding-pragma.patch, unescaped_left_brace.patch.
+    Both fixed upstream.
+  * Drop unneeded version constraint from build dependency.
+  * Use HTTPS for some URLs in debian/{copyright,upstream/metadata}.
+    Thanks to duck.
+  * Add more fixes to spelling.patch.
+  * Set bindnow linker flag in debian/rules.
+  * Declare compliance with Debian Policy 4.0.0.
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 23 Jun 2017 21:13:00 +0200
+
+libwx-perl (1:0.9928-3) unstable; urgency=medium
+
+  * Add patch encoding-pragma.patch to disable "use encoding" which is a
+    fatal error since Perl 5.25.x. (Closes: #826452)
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 20 May 2017 13:47:09 +0200
+
+libwx-perl (1:0.9928-2) unstable; urgency=medium
+
+  * Remove Chris Butler from Uploaders. Thanks for your work!
+  * Add patch to fix "Unescaped left brace" warning/error which becomes
+    fatal in 5.25.x. (Closes: #826463)
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 20 May 2017 11:48:17 +0200
+
+libwx-perl (1:0.9928-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Reiner Herrmann ]
+  * Add patch to produce sorted output to get reproducible results.
+    (Closes: #787265)
+
+  [ Axel Beckert ]
+  * Add ext/webview/Makefile to debian/clean.
+  * Add debian/upstream/metadata
+  * Import upstream version 0.9927
+  * Add lintian overrides for the two pkg-perl specific lintian warnings
+    library-package-name-for-application + application-in-library-section.
+
+  [ gregor herrmann ]
+  * debian/copyright: fix a path to (a) file(s).
+  * Rename autopkgtest configuration file(s) as per new pkg-perl-
+    autopkgtest schema.
+  * debian/copyright: change Copyright-Format 1.0 URL to HTTPS.
+  * debian/upstream/metadata: change GitHub/CPAN URL(s) to HTTPS.
+
+  [ Salvatore Bonaccorso ]
+  * debian/control: Use HTTPS transport protocol for Vcs-Git URI
+
+  [ intrigeri ]
+  * Declare compliance with Standards-Version 3.9.8.
+  * Imported upstream version 0.9928.
+
+ -- intrigeri <intrigeri@debian.org>  Mon, 27 Jun 2016 15:11:25 +0000
+
+libwx-perl (1:0.9923-4) unstable; urgency=medium
+
+  * Team upload.
+  * Remove arm* workarounds now that the gcc-4.9 issues are fixed.
+    (Closes: #758497)
+  * Make the package autopkgtestable.
+  * Upgrade to Standards-Version 3.9.6 (no changes).
+
+ -- Niko Tyni <ntyni@debian.org>  Fri, 10 Oct 2014 22:40:41 +0300
+
+libwx-perl (1:0.9923-3) unstable; urgency=high
+
+  [ gregor herrmann ]
+  * Add patches from Niko Tyni to handle missing wxwidgets3.0 symbol on
+    arm{el,hf}:
+    - Wx.xs: return 0 if wxPluginManager::LoadLibrary fails
+    - t/01_load.t: skip failing tests
+    - ext/propgrid/Makefile.PL: skip tests
+    Closes: #758127
+    High urgency to help the perl 5.20 transition
+
+  [ Salvatore Bonaccorso ]
+  * Update Vcs-Browser URL to cgit web frontend
+
+  [ Damyan Ivanov ]
+  * adapt lintian overrides with new vendorarch (m-a aware and
+    version-dependent)
+
+ -- Damyan Ivanov <dmn@debian.org>  Sun, 17 Aug 2014 19:46:33 +0000
+
+libwx-perl (1:0.9923-2) unstable; urgency=medium
+
+  [ gregor herrmann ]
+  * Use $Config{vendorarch} in debian/rules instead of /usr/lib/perl5.
+  * Refresh fix-fake-pod.patch (offset).
+
+  [ Niko Tyni ]
+  * Depend on the virtual package wxperl-<key>, now provided by
+    libalien-wxwidgets-perl, to avoid version skew between the
+    packages. (Closes: #757855)
+
+ -- gregor herrmann <gregoa@debian.org>  Wed, 13 Aug 2014 23:23:33 +0200
+
+libwx-perl (1:0.9923-1) unstable; urgency=medium
+
+  * Strip trailing slash from metacpan URLs.
+
+  * New upstream release.
+  * (Build-) depend on newer libalien-wxwidgets-perl to get dependency on
+    wxwidgets3.0. (Closes: #743280)
+  * Add a lintian override for a spelling mistake in a variable name.
+  * debian/copyright: fix URL of original wxWindows Library Licence.
+  * Declare compliance with Debian Policy 3.9.5.
+
+ -- gregor herrmann <gregoa@debian.org>  Tue, 01 Apr 2014 19:36:23 +0200
+
+libwx-perl (1:0.9922-2) unstable; urgency=low
+
+  * Make (build) dependency on libalien-wxwidgets-perl versioned.
+    (Closes: #719380)
+  * Update and forward fix-man-spelling patch.
+
+ -- gregor herrmann <gregoa@debian.org>  Mon, 19 Aug 2013 14:20:49 +0200
+
+libwx-perl (1:0.9922-1) unstable; urgency=low
+
+  [ Salvatore Bonaccorso ]
+  * Change Vcs-Git to canonical URI (git://anonscm.debian.org)
+  * Change search.cpan.org based URIs to metacpan.org based URIs
+
+  [ Dominique Dumont ]
+  * Imported Upstream version 0.9922
+  * added patch to fix Wx man page spelling errors
+  * copyright: updated year
+  * control:
+    * refreshed with cme
+    * cleaned up versioned dependencies
+    * bumped Standards-Version: 3.9.4
+    + added /me in uploader
+    - removed ryan
+
+ -- Dominique Dumont <dod@debian.org>  Thu, 02 May 2013 20:43:23 +0200
+
+libwx-perl (1:0.9911-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Alessandro Ghedini <ghedo@debian.org>  Sun, 02 Sep 2012 17:06:37 +0200
+
+libwx-perl (1:0.9909-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Alessandro Ghedini <ghedo@debian.org>  Thu, 31 May 2012 21:48:06 +0200
+
+libwx-perl (1:0.9908-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Alessandro Ghedini <ghedo@debian.org>  Sun, 27 May 2012 15:05:58 +0200
+
+libwx-perl (1:0.9906-1) unstable; urgency=low
+
+  * New upstream release
+  * Email change: Alessandro Ghedini -> ghedo@debian.org
+  * Update copyright file with new files
+
+ -- Alessandro Ghedini <ghedo@debian.org>  Tue, 08 May 2012 13:05:34 +0200
+
+libwx-perl (1:0.9905-1) unstable; urgency=low
+
+  * New upstream release
+  * Update debhelper versioned build depend to get more hardening flags
+  * Update upstream copyright years
+  * Add interface/wx/treelist.h to copyright
+
+ -- Alessandro Ghedini <al3xbio@gmail.com>  Mon, 19 Mar 2012 15:40:27 +0100
+
+libwx-perl (1:0.9904-1) unstable; urgency=low
+
+  [ Alessandro Ghedini ]
+  * New upstream release
+  * Add myself to Uploaders
+  * Bump debhelper compat level to 9
+  * Update debian/copyright format as in Debian Policy 3.9.3
+  * Bump Standards-Version to 3.9.3
+  * Remove README.Debian (duplicates the Homepage d/control field)
+
+  [ gregor herrmann ]
+  * Simplify debian/rules a bit since lintian bug #638411 is fixed.
+
+ -- Alessandro Ghedini <al3xbio@gmail.com>  Wed, 29 Feb 2012 14:29:46 +0100
+
+libwx-perl (1:0.9903-1) unstable; urgency=low
+
+  [ Alessandro Ghedini ]
+  * New upstream release
+
+  [ Dominic Hargreaves ]
+  * Swap libextutils-parsexs-perl/perl alternate build-dependency around
+    following migration of perl 5.14 to unstable so that it can be
+    autobuilt
+
+ -- Dominic Hargreaves <dom@earth.li>  Thu, 17 Nov 2011 21:25:07 +0000
+
+libwx-perl (1:0.9902-1) unstable; urgency=low
+
+  * Team upload
+  * New upstream release
+  * Refresh patches
+  * Update debian/copyright
+
+ -- Alessandro Ghedini <al3xbio@gmail.com>  Fri, 14 Oct 2011 13:53:09 +0200
+
+libwx-perl (1:0.9901-3) unstable; urgency=low
+
+  * point to GPL-1 for "version 1 or later". Thanks to Salvatore.
+
+ -- Damyan Ivanov <dmn@debian.org>  Sun, 21 Aug 2011 09:22:38 +0300
+
+libwx-perl (1:0.9901-2) unstable; urgency=low
+
+  * rules: use cleartext targets instead of a variable containing them all
+    works around lintian #638411 which causes an automated reject
+
+ -- Damyan Ivanov <dmn@debian.org>  Sat, 20 Aug 2011 22:05:08 +0300
+
+libwx-perl (1:0.9901-1) unstable; urgency=low
+
+  * Team upload
+
+  [ Salvatore Bonaccorso ]
+  * New upstream release
+  * Remove debian/README.source as we use '3.0 (quilt) source package
+    format now.
+  * Bump Debhelper compat level to 8.
+  * debian/control:
+    - Bump versioned Build-Depends on debhelper to (>= 8).
+    - Bump versioned Build-Depends on libextutils-xspp-perl to (>= 0.1602).
+  * debian/copyright: Update copyright years for upstream files.
+
+  [ gregor herrmann ]
+  * debian/watch: add uversionmangle to cope with future 2-digit minor
+    versions.
+  * debian/rules: use --max-parallel=1 instead of $(MAKE) -j1.
+
+  [ Ansgar Burchardt ]
+  * debian/control: Convert Vcs-* fields to Git.
+
+  [ gregor herrmann ]
+  * Set Standards-Version to 3.9.2 (no changes).
+  * Add perl 5.14 as an alternative build dependency to
+    libextutils-parsexs-perl. (Closes: #636762)
+
+  [ Damyan Ivanov ]
+  * rules: delcare top-level targets as phony. Closes: #638396 -- runs
+    testsuite as root (in the 'binary' target).
+    Thanks to Jonathen Nieder
+  * allow parallel building
+  * describe interface/wx in debian/copyright
+  * rules: consistently make all examples executable
+  * add fix-fake-pod.patch fixing unintentionally created manual page
+  * add spelling.patch fixing a small spelling mistake in cpp/overload.cpp
+
+ -- Damyan Ivanov <dmn@debian.org>  Fri, 19 Aug 2011 11:06:22 +0300
+
+libwx-perl (1:0.98-1) unstable; urgency=low
+
+  * New upstream release
+    - add epoch, to compensate for upstream going from 0.9702 -> 0.98
+  * Standards-Version: 3.9.1 (no changes required)
+
+ -- Roberto C. Sanchez <roberto@connexer.com>  Tue, 18 Jan 2011 17:17:01 -0500
+
+libwx-perl (0.9702-1) unstable; urgency=low
+
+  * New upstream release
+    - now requires at least ExtUtils::ParseXS version 2.2202 and
+      ExtUtils:XSpp 0.11
+
+ -- Chris Butler <chrisb@debian.org>  Thu, 06 May 2010 21:53:39 +0100
+
+libwx-perl (0.9701-1) unstable; urgency=low
+
+  * New upstream release
+    - now requires at least ExtUtils::ParseXS version 2.2202, build-dep added
+    - build-dep on ExtUtils:XSpp upped to version 0.9
+  * Switched to source format 3.0 (quilt). Removed quilt invocation in rules
+    and build-dep.
+  * Updated upstream author copyright years in debian/copyright
+
+ -- Chris Butler <chrisb@debian.org>  Sun, 28 Mar 2010 21:02:12 +0100
+
+libwx-perl (0.96-2) unstable; urgency=low
+
+  * add -a option to xvfb-run invocation
+    Closes: #573679. Thanks to Lucas for reporting and to Jozef for providing
+    the solution.
+  * Standards-Version: 3.8.4 (no changes required)
+
+ -- Damyan Ivanov <dmn@debian.org>  Mon, 15 Mar 2010 18:46:45 +0200
+
+libwx-perl (0.96-1) unstable; urgency=low
+
+  * require alien-wxwidgets version 0.48
+  * New upstream release
+
+ -- Ryan Niebur <ryan@debian.org>  Tue, 26 Jan 2010 23:30:16 -0800
+
+libwx-perl (0.94-1) unstable; urgency=low
+
+  [ Roberto C. Sanchez ]
+  * New upstream release
+
+  [ Ryan Niebur ]
+  * remove wrap_get_raw_keycode.patch, applied upstream
+  * skip the failing tests (Closes: #499740)
+
+ -- Ryan Niebur <ryan@debian.org>  Thu, 24 Dec 2009 12:23:28 -0800
+
+libwx-perl (0.93-2) unstable; urgency=low
+
+  * run the splashfast tests with perl instead of under Test::Harness
+    (or whatever it usually runs under)
+
+ -- Ryan Niebur <ryan@debian.org>  Thu, 22 Oct 2009 16:27:11 -0700
+
+libwx-perl (0.93-1) unstable; urgency=low
+
+  [ Ryan Niebur ]
+  * Update ryan52's email address
+
+  [ gregor herrmann ]
+  * New upstream release.
+  * Make build dependency on libextutils-xspp-perl versioned.
+
+ -- gregor herrmann <gregoa@debian.org>  Thu, 01 Oct 2009 23:34:48 +0200
+
+libwx-perl (0.92-2) unstable; urgency=low
+
+  [ gregor herrmann ]
+  * Change my email address.
+
+  [ Ryan Niebur ]
+  * wrap wxKeyEvent::GetRawKeyCode, backported from upstream SVN
+  * Add myself to Uploaders
+
+ -- Ryan Niebur <ryanryan52@gmail.com>  Sat, 12 Sep 2009 23:18:49 -0700
+
+libwx-perl (0.92-1) unstable; urgency=low
+
+  [ Nathan Handler ]
+  * debian/watch: Update to ignore development releases.
+
+  [ Damyan Ivanov ]
+  * New upstream release
+  * add libextutils-xspp-perl to B-D
+  * bump Standards-Version to 3.8.3 (no changes needed)
+  * add explicit build-dependency on perl
+
+ -- Damyan Ivanov <dmn@debian.org>  Tue, 01 Sep 2009 13:49:55 +0300
+
+libwx-perl (0.91-1) unstable; urgency=low
+
+  [ Jonathan Yu ]
+  * New upstream release
+
+  [ Damyan Ivanov ]
+  * convert to debhelper7 and clean-up
+    + bump debhelper and quilt build-dependencies due to usage of overrides
+      and "--with quilt"
+    + move removal of build cruft to debian/clean
+    + install examples using debian/examples
+    + install README.txt using debian/docs
+    + drop dropping of build:: from the beginning of some manual pages (there
+      are no more man pages starting with build::
+    + make chown of module files in /usr/lib/perl5 verbose. ditto for
+      Wx::build::MakeMaker::Win32_MSVC.3pm removal
+    + mode of examples/README.txt fixed with an override
+  * describe hashbang.patch
+  * drop kill_bogus_test.patch, it is skipped anyway
+  * add a sentence to long description
+  * Standards-Version: 3.8.1 (no changes)
+  * bump years in debian/copyright and add two additional upstream copyright
+    holders
+
+ -- Damyan Ivanov <dmn@debian.org>  Sat, 30 May 2009 17:23:32 +0300
+
+libwx-perl (0.89-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Roberto C. Sanchez <roberto@connexer.com>  Sat, 13 Dec 2008 20:38:42 -0500
+
+libwx-perl (0.88-1) unstable; urgency=low
+
+  [ Roberto C. Sanchez]
+  * New upstream release (Closes: #499740)
+
+  [ gregor herrmann]
+  * debian/control: Changed: Switched Vcs-Browser field to ViewSVN
+    (source stanza).
+
+ -- Roberto C. Sanchez <roberto@connexer.com>  Tue, 18 Nov 2008 19:57:16 -0500
+
+libwx-perl (0.86-2) unstable; urgency=medium
+
+  * debian/rules: run tests with -j1; this disables parallel make during tests
+    even if the build target was invoked with -jN (N>1).
+    Closes: #499740 -- FTBFS: Failed 2/4 test scripts. 6/9 subtests failed.
+
+ -- Damyan Ivanov <dmn@debian.org>  Fri, 03 Oct 2008 00:11:25 +0300
+
+libwx-perl (0.86-1) unstable; urgency=low
+
+  [ gregor herrmann ]
+  * Add debian/README.source to document quilt usage, as required by
+    Debian Policy since 3.8.0.
+
+  [ Damyan Ivanov ]
+  * New upstream release
+  * debian/copyright: add a couple of copyright holders
+  * debian/rules: fix target interdependencies allowing for parallel builds
+  * bump libalien-wxwidgets-perl (build-)dependency to >= 0.39 to pick up
+    building against wx2.8
+  * Add myself to Uploaders
+
+ -- Damyan Ivanov <dmn@debian.org>  Mon, 15 Sep 2008 11:44:28 +0300
+
+libwx-perl (0.84-2) unstable; urgency=low
+
+  * Add xauth fo Build-Depends (Closes: #489105).
+
+ -- Roberto C. Sanchez <roberto@connexer.com>  Thu, 03 Jul 2008 06:07:27 -0400
+
+libwx-perl (0.84-1) unstable; urgency=low
+
+  * New upstream release
+  * Update to Standards-Version 3.8.0 (no changes)
+  * Change from Build-Depends on the obsolete xbase-clients to x11-xkb-utils
+
+ -- Roberto C. Sanchez <roberto@connexer.com>  Mon, 30 Jun 2008 19:24:25 -0400
+
+libwx-perl (0.83-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Roberto C. Sanchez <roberto@connexer.com>  Tue, 20 May 2008 16:20:12 -0400
+
+libwx-perl (0.82-2) unstable; urgency=low
+
+  * Build-Depend and Depend on libalien-wxwidgets-perl (>= 0.33-3), which can
+    properly recognize g++ >= 4.3.
+
+ -- Roberto C. Sanchez <roberto@connexer.com>  Sat, 12 Apr 2008 14:17:17 -0400
+
+libwx-perl (0.82-1) unstable; urgency=low
+
+  * New upstream release.
+  * Drop patch 01_fix_whatis_entries.patch, now included upstreams.
+  * Add patch hashbang.patch: adds proper perl hashbang to scripts in
+    examples/socket/
+  * Rename patch 02_kill_bogus_test.patch to kill_bogus_test.patch.
+  * debian/copyright: shorten upstream download location.
+  * debian/watch: extended regexp for matching upstream releases.
+  * debian/rules:
+    - remove obsolete source and diff targets
+    - add install target to .PHONY
+    - no need to rename {wx_overload,wx_xspp}.pl anymore, upstream has
+      changed the names ("to comply with Debian policy", as the Changes file
+      says) - thanks!
+    - fix permissions of some files in /usr/lib/perl5/Wx/
+  * Remove debian/{docs,examples} and install samples/* and README.txt
+    directly from debian/rules
+  * Add /me to Uploaders.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Fri, 28 Mar 2008 01:55:29 +0100
+
+libwx-perl (0.81-2) unstable; urgency=low
+
+  * add ${perl:Depends} to Depends. Thanks, Niko.
+  * Switch to new format for copyright file.
+
+ -- Roberto C. Sanchez <roberto@connexer.com>  Sun, 27 Jan 2008 14:58:33 -0500
+
+libwx-perl (0.81-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Roberto C. Sanchez <roberto@connexer.com>  Thu, 24 Jan 2008 18:22:55 -0500
+
+libwx-perl (0.80-1) unstable; urgency=low
+
+  * Initial release (Closes: #397533)
+
+ -- Roberto C. Sanchez <roberto@connexer.com>  Sat, 19 Jan 2008 13:59:49 -0500

@@ -1,0 +1,39 @@
+Source: libwx-perl
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: gregor herrmann <gregoa@debian.org>,
+           Damyan Ivanov <dmn@debian.org>,
+           Dominic Hargreaves <dom@earth.li>,
+           Dominique Dumont <dod@debian.org>,
+           Olly Betts <olly@survex.com>
+Section: perl
+Testsuite: autopkgtest-pkg-perl
+Priority: optional
+Build-Depends: debhelper-compat (= 13),
+               libalien-wxwidgets-perl,
+               libextutils-xspp-perl,
+               libtest-pod-perl <!nocheck>,
+               libyaml-perl <!nocheck>,
+               perl-xs-dev,
+               perl:native,
+               x11-xkb-utils <!nocheck>,
+               xauth <!nocheck>,
+               xfonts-base <!nocheck>,
+               xvfb <!nocheck>
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/perl-team/modules/packages/libwx-perl
+Vcs-Git: https://salsa.debian.org/perl-team/modules/packages/libwx-perl.git
+Homepage: http://wxperl.sourceforge.net/
+Rules-Requires-Root: no
+
+Package: libwx-perl
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         ${perl:Depends},
+         ${shlibs:Depends},
+         ${wxperl:Depends},
+         libalien-wxwidgets-perl
+Description: interface to wxWidgets cross-platform GUI toolkit
+ wxPerl is an extension module allowing the creation of GUI (Graphical
+ User Interface) Perl programs using the wxWidgets toolkit. It serves as a Perl
+ wrapper around wxWidgets.
