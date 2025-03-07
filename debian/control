@@ -9,7 +9,7 @@ Section: perl
 Testsuite: autopkgtest-pkg-perl
 Priority: optional
 Build-Depends: debhelper-compat (= 13),
-               libalien-wxwidgets-perl,
+               libalien-wxwidgets-perl (>= 0.69+dfsg-8~),
                libextutils-xspp-perl,
                libtest-pod-perl <!nocheck>,
                libyaml-perl <!nocheck>,
@@ -19,7 +19,7 @@ Build-Depends: debhelper-compat (= 13),
                xauth <!nocheck>,
                xfonts-base <!nocheck>,
                xvfb <!nocheck>
-Standards-Version: 4.6.0
+Standards-Version: 4.7.0
 Vcs-Browser: https://salsa.debian.org/perl-team/modules/packages/libwx-perl
 Vcs-Git: https://salsa.debian.org/perl-team/modules/packages/libwx-perl.git
 Homepage: http://wxperl.sourceforge.net/
@@ -32,7 +32,7 @@ Depends: ${misc:Depends},
          ${perl:Depends},
          ${shlibs:Depends},
          ${wxperl:Depends},
-         libalien-wxwidgets-perl
+         libalien-wxwidgets-perl (>= 0.69+dfsg-8~)
 Description: interface to wxWidgets cross-platform GUI toolkit
  wxPerl is an extension module allowing the creation of GUI (Graphical
  User Interface) Perl programs using the wxWidgets toolkit. It serves as a Perl
